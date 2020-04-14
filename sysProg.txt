@@ -1,0 +1,13 @@
+Augabe 1:
+
+ampel 100 rot, 100 rot gelb, 1000 grün, 100 gelb
+
+Aufgabe2: 6bit Lauflicht
+Aufgabe3: 10bit Lauflicht
+
+
+440HZ mit anderem timer prescaler
+combination mit interrupts button1 -> ton 1, button 2 -> ton2
+
+
+auto dimmer mit pwm hell--langsam dunkel--hell

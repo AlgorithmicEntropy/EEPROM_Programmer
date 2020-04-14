@@ -1,0 +1,3 @@
+D:/Studium/4_Semester/SysProg/cmake-build-debug/CMakeFiles/SysProg.dir
+D:/Studium/4_Semester/SysProg/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Studium/4_Semester/SysProg/cmake-build-debug/CMakeFiles/rebuild_cache.dir
