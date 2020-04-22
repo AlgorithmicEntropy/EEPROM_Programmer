@@ -1,0 +1,947 @@
+
+Programmer.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00800100  00000508  0000059c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000508  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000000d5  00800102  00800102  0000059e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000059e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000005d0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000d0  00000000  00000000  00000610  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000e82  00000000  00000000  000006e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007f1  00000000  00000000  00001562  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000995  00000000  00000000  00001d53  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000238  00000000  00000000  000026e8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00007577  00000000  00000000  00002920  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000069c  00000000  00000000  00009e97  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000d8  00000000  00000000  0000a533  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_macro  00002a5d  00000000  00000000  0000a60b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	33 c0       	rjmp	.+102    	; 0x68 <__ctors_end>
+   2:	00 00       	nop
+   4:	4c c0       	rjmp	.+152    	; 0x9e <__bad_interrupt>
+   6:	00 00       	nop
+   8:	4a c0       	rjmp	.+148    	; 0x9e <__bad_interrupt>
+   a:	00 00       	nop
+   c:	48 c0       	rjmp	.+144    	; 0x9e <__bad_interrupt>
+   e:	00 00       	nop
+  10:	46 c0       	rjmp	.+140    	; 0x9e <__bad_interrupt>
+  12:	00 00       	nop
+  14:	44 c0       	rjmp	.+136    	; 0x9e <__bad_interrupt>
+  16:	00 00       	nop
+  18:	42 c0       	rjmp	.+132    	; 0x9e <__bad_interrupt>
+  1a:	00 00       	nop
+  1c:	40 c0       	rjmp	.+128    	; 0x9e <__bad_interrupt>
+  1e:	00 00       	nop
+  20:	3e c0       	rjmp	.+124    	; 0x9e <__bad_interrupt>
+  22:	00 00       	nop
+  24:	3c c0       	rjmp	.+120    	; 0x9e <__bad_interrupt>
+  26:	00 00       	nop
+  28:	3a c0       	rjmp	.+116    	; 0x9e <__bad_interrupt>
+  2a:	00 00       	nop
+  2c:	38 c0       	rjmp	.+112    	; 0x9e <__bad_interrupt>
+  2e:	00 00       	nop
+  30:	36 c0       	rjmp	.+108    	; 0x9e <__bad_interrupt>
+  32:	00 00       	nop
+  34:	e2 c1       	rjmp	.+964    	; 0x3fa <__vector_13>
+  36:	00 00       	nop
+  38:	32 c0       	rjmp	.+100    	; 0x9e <__bad_interrupt>
+  3a:	00 00       	nop
+  3c:	30 c0       	rjmp	.+96     	; 0x9e <__bad_interrupt>
+  3e:	00 00       	nop
+  40:	2e c0       	rjmp	.+92     	; 0x9e <__bad_interrupt>
+  42:	00 00       	nop
+  44:	2c c0       	rjmp	.+88     	; 0x9e <__bad_interrupt>
+  46:	00 00       	nop
+  48:	03 c1       	rjmp	.+518    	; 0x250 <__vector_18>
+  4a:	00 00       	nop
+  4c:	28 c0       	rjmp	.+80     	; 0x9e <__bad_interrupt>
+  4e:	00 00       	nop
+  50:	26 c0       	rjmp	.+76     	; 0x9e <__bad_interrupt>
+  52:	00 00       	nop
+  54:	24 c0       	rjmp	.+72     	; 0x9e <__bad_interrupt>
+  56:	00 00       	nop
+  58:	22 c0       	rjmp	.+68     	; 0x9e <__bad_interrupt>
+  5a:	00 00       	nop
+  5c:	20 c0       	rjmp	.+64     	; 0x9e <__bad_interrupt>
+  5e:	00 00       	nop
+  60:	1e c0       	rjmp	.+60     	; 0x9e <__bad_interrupt>
+  62:	00 00       	nop
+  64:	1c c0       	rjmp	.+56     	; 0x9e <__bad_interrupt>
+	...
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e8 e0       	ldi	r30, 0x08	; 8
+  7c:	f5 e0       	ldi	r31, 0x05	; 5
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 30       	cpi	r26, 0x02	; 2
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a2 e0       	ldi	r26, 0x02	; 2
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a7 3d       	cpi	r26, 0xD7	; 215
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	d8 d1       	rcall	.+944    	; 0x44c <main>
+  9c:	33 c2       	rjmp	.+1126   	; 0x504 <_exit>
+
+0000009e <__bad_interrupt>:
+  9e:	b0 cf       	rjmp	.-160    	; 0x0 <__vectors>
+
+000000a0 <shiftOutChar>:
+	while (str[i] != 0x00)
+	{
+		USART_putByte(str[i]);
+		i++;
+	}
+}
+  a0:	cf 93       	push	r28
+  a2:	df 93       	push	r29
+  a4:	27 e0       	ldi	r18, 0x07	; 7
+  a6:	30 e0       	ldi	r19, 0x00	; 0
+  a8:	08 2e       	mov	r0, r24
+  aa:	00 0c       	add	r0, r0
+  ac:	99 0b       	sbc	r25, r25
+  ae:	a7 e0       	ldi	r26, 0x07	; 7
+  b0:	b0 e0       	ldi	r27, 0x00	; 0
+  b2:	44 23       	and	r20, r20
+  b4:	79 f0       	breq	.+30     	; 0xd4 <shiftOutChar+0x34>
+  b6:	fd 01       	movw	r30, r26
+  b8:	e2 1b       	sub	r30, r18
+  ba:	f3 0b       	sbc	r31, r19
+  bc:	ec 01       	movw	r28, r24
+  be:	02 c0       	rjmp	.+4      	; 0xc4 <shiftOutChar+0x24>
+  c0:	d5 95       	asr	r29
+  c2:	c7 95       	ror	r28
+  c4:	ea 95       	dec	r30
+  c6:	e2 f7       	brpl	.-8      	; 0xc0 <shiftOutChar+0x20>
+  c8:	c0 ff       	sbrs	r28, 0
+  ca:	02 c0       	rjmp	.+4      	; 0xd0 <shiftOutChar+0x30>
+  cc:	5d 9a       	sbi	0x0b, 5	; 11
+  ce:	0e c0       	rjmp	.+28     	; 0xec <shiftOutChar+0x4c>
+  d0:	5d 98       	cbi	0x0b, 5	; 11
+  d2:	0c c0       	rjmp	.+24     	; 0xec <shiftOutChar+0x4c>
+  d4:	fc 01       	movw	r30, r24
+  d6:	02 2e       	mov	r0, r18
+  d8:	02 c0       	rjmp	.+4      	; 0xde <shiftOutChar+0x3e>
+  da:	f5 95       	asr	r31
+  dc:	e7 95       	ror	r30
+  de:	0a 94       	dec	r0
+  e0:	e2 f7       	brpl	.-8      	; 0xda <shiftOutChar+0x3a>
+  e2:	e0 ff       	sbrs	r30, 0
+  e4:	02 c0       	rjmp	.+4      	; 0xea <shiftOutChar+0x4a>
+  e6:	5d 9a       	sbi	0x0b, 5	; 11
+  e8:	01 c0       	rjmp	.+2      	; 0xec <shiftOutChar+0x4c>
+  ea:	5d 98       	cbi	0x0b, 5	; 11
+  ec:	5c 9a       	sbi	0x0b, 4	; 11
+  ee:	5c 98       	cbi	0x0b, 4	; 11
+  f0:	21 50       	subi	r18, 0x01	; 1
+  f2:	31 09       	sbc	r19, r1
+  f4:	f0 f6       	brcc	.-68     	; 0xb2 <shiftOutChar+0x12>
+  f6:	66 23       	and	r22, r22
+  f8:	11 f0       	breq	.+4      	; 0xfe <shiftOutChar+0x5e>
+  fa:	5b 9a       	sbi	0x0b, 3	; 11
+  fc:	5b 98       	cbi	0x0b, 3	; 11
+  fe:	df 91       	pop	r29
+ 100:	cf 91       	pop	r28
+ 102:	08 95       	ret
+
+00000104 <shiftOutShort>:
+ 104:	cf 93       	push	r28
+ 106:	c8 2f       	mov	r28, r24
+ 108:	40 e0       	ldi	r20, 0x00	; 0
+ 10a:	60 e0       	ldi	r22, 0x00	; 0
+ 10c:	89 2f       	mov	r24, r25
+ 10e:	c8 df       	rcall	.-112    	; 0xa0 <shiftOutChar>
+ 110:	40 e0       	ldi	r20, 0x00	; 0
+ 112:	60 e0       	ldi	r22, 0x00	; 0
+ 114:	8c 2f       	mov	r24, r28
+ 116:	c4 df       	rcall	.-120    	; 0xa0 <shiftOutChar>
+ 118:	5b 9a       	sbi	0x0b, 3	; 11
+ 11a:	5b 98       	cbi	0x0b, 3	; 11
+ 11c:	cf 91       	pop	r28
+ 11e:	08 95       	ret
+
+00000120 <setupShiftIO>:
+ 120:	8a b1       	in	r24, 0x0a	; 10
+ 122:	88 63       	ori	r24, 0x38	; 56
+ 124:	8a b9       	out	0x0a, r24	; 10
+ 126:	08 95       	ret
+
+00000128 <setupFIFO>:
+ 128:	88 e0       	ldi	r24, 0x08	; 8
+ 12a:	91 e0       	ldi	r25, 0x01	; 1
+ 12c:	90 93 d1 01 	sts	0x01D1, r25	; 0x8001d1 <buffer+0xc9>
+ 130:	80 93 d0 01 	sts	0x01D0, r24	; 0x8001d0 <buffer+0xc8>
+ 134:	90 93 d3 01 	sts	0x01D3, r25	; 0x8001d3 <buffer+0xcb>
+ 138:	80 93 d2 01 	sts	0x01D2, r24	; 0x8001d2 <buffer+0xca>
+ 13c:	10 92 d4 01 	sts	0x01D4, r1	; 0x8001d4 <buffer+0xcc>
+ 140:	08 95       	ret
+
+00000142 <BufferIn>:
+ 142:	e0 91 d2 01 	lds	r30, 0x01D2	; 0x8001d2 <buffer+0xca>
+ 146:	f0 91 d3 01 	lds	r31, 0x01D3	; 0x8001d3 <buffer+0xcb>
+ 14a:	af 01       	movw	r20, r30
+ 14c:	4f 5f       	subi	r20, 0xFF	; 255
+ 14e:	5f 4f       	sbci	r21, 0xFF	; 255
+ 150:	20 91 d0 01 	lds	r18, 0x01D0	; 0x8001d0 <buffer+0xc8>
+ 154:	30 91 d1 01 	lds	r19, 0x01D1	; 0x8001d1 <buffer+0xc9>
+ 158:	42 17       	cp	r20, r18
+ 15a:	53 07       	cpc	r21, r19
+ 15c:	11 f1       	breq	.+68     	; 0x1a2 <BufferIn+0x60>
+ 15e:	28 50       	subi	r18, 0x08	; 8
+ 160:	31 40       	sbci	r19, 0x01	; 1
+ 162:	19 f4       	brne	.+6      	; 0x16a <BufferIn+0x28>
+ 164:	4f 5c       	subi	r20, 0xCF	; 207
+ 166:	51 40       	sbci	r21, 0x01	; 1
+ 168:	f1 f0       	breq	.+60     	; 0x1a6 <BufferIn+0x64>
+ 16a:	80 83       	st	Z, r24
+ 16c:	80 91 d2 01 	lds	r24, 0x01D2	; 0x8001d2 <buffer+0xca>
+ 170:	90 91 d3 01 	lds	r25, 0x01D3	; 0x8001d3 <buffer+0xcb>
+ 174:	01 96       	adiw	r24, 0x01	; 1
+ 176:	21 e0       	ldi	r18, 0x01	; 1
+ 178:	8f 3c       	cpi	r24, 0xCF	; 207
+ 17a:	92 07       	cpc	r25, r18
+ 17c:	28 f4       	brcc	.+10     	; 0x188 <BufferIn+0x46>
+ 17e:	90 93 d3 01 	sts	0x01D3, r25	; 0x8001d3 <buffer+0xcb>
+ 182:	80 93 d2 01 	sts	0x01D2, r24	; 0x8001d2 <buffer+0xca>
+ 186:	06 c0       	rjmp	.+12     	; 0x194 <BufferIn+0x52>
+ 188:	88 e0       	ldi	r24, 0x08	; 8
+ 18a:	91 e0       	ldi	r25, 0x01	; 1
+ 18c:	90 93 d3 01 	sts	0x01D3, r25	; 0x8001d3 <buffer+0xcb>
+ 190:	80 93 d2 01 	sts	0x01D2, r24	; 0x8001d2 <buffer+0xca>
+ 194:	e4 ed       	ldi	r30, 0xD4	; 212
+ 196:	f1 e0       	ldi	r31, 0x01	; 1
+ 198:	80 81       	ld	r24, Z
+ 19a:	8f 5f       	subi	r24, 0xFF	; 255
+ 19c:	80 83       	st	Z, r24
+ 19e:	81 e0       	ldi	r24, 0x01	; 1
+ 1a0:	08 95       	ret
+ 1a2:	80 e0       	ldi	r24, 0x00	; 0
+ 1a4:	08 95       	ret
+ 1a6:	80 e0       	ldi	r24, 0x00	; 0
+ 1a8:	08 95       	ret
+
+000001aa <BufferOut>:
+ 1aa:	e0 91 d0 01 	lds	r30, 0x01D0	; 0x8001d0 <buffer+0xc8>
+ 1ae:	f0 91 d1 01 	lds	r31, 0x01D1	; 0x8001d1 <buffer+0xc9>
+ 1b2:	20 91 d2 01 	lds	r18, 0x01D2	; 0x8001d2 <buffer+0xca>
+ 1b6:	30 91 d3 01 	lds	r19, 0x01D3	; 0x8001d3 <buffer+0xcb>
+ 1ba:	e2 17       	cp	r30, r18
+ 1bc:	f3 07       	cpc	r31, r19
+ 1be:	f1 f0       	breq	.+60     	; 0x1fc <BufferOut+0x52>
+ 1c0:	20 81       	ld	r18, Z
+ 1c2:	fc 01       	movw	r30, r24
+ 1c4:	20 83       	st	Z, r18
+ 1c6:	80 91 d0 01 	lds	r24, 0x01D0	; 0x8001d0 <buffer+0xc8>
+ 1ca:	90 91 d1 01 	lds	r25, 0x01D1	; 0x8001d1 <buffer+0xc9>
+ 1ce:	01 96       	adiw	r24, 0x01	; 1
+ 1d0:	f1 e0       	ldi	r31, 0x01	; 1
+ 1d2:	8f 3c       	cpi	r24, 0xCF	; 207
+ 1d4:	9f 07       	cpc	r25, r31
+ 1d6:	28 f4       	brcc	.+10     	; 0x1e2 <BufferOut+0x38>
+ 1d8:	90 93 d1 01 	sts	0x01D1, r25	; 0x8001d1 <buffer+0xc9>
+ 1dc:	80 93 d0 01 	sts	0x01D0, r24	; 0x8001d0 <buffer+0xc8>
+ 1e0:	06 c0       	rjmp	.+12     	; 0x1ee <BufferOut+0x44>
+ 1e2:	88 e0       	ldi	r24, 0x08	; 8
+ 1e4:	91 e0       	ldi	r25, 0x01	; 1
+ 1e6:	90 93 d1 01 	sts	0x01D1, r25	; 0x8001d1 <buffer+0xc9>
+ 1ea:	80 93 d0 01 	sts	0x01D0, r24	; 0x8001d0 <buffer+0xc8>
+ 1ee:	e4 ed       	ldi	r30, 0xD4	; 212
+ 1f0:	f1 e0       	ldi	r31, 0x01	; 1
+ 1f2:	80 81       	ld	r24, Z
+ 1f4:	81 50       	subi	r24, 0x01	; 1
+ 1f6:	80 83       	st	Z, r24
+ 1f8:	81 e0       	ldi	r24, 0x01	; 1
+ 1fa:	08 95       	ret
+ 1fc:	80 e0       	ldi	r24, 0x00	; 0
+ 1fe:	08 95       	ret
+
+00000200 <setupSerial>:
+ 200:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+ 204:	80 e1       	ldi	r24, 0x10	; 16
+ 206:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+ 20a:	e0 ec       	ldi	r30, 0xC0	; 192
+ 20c:	f0 e0       	ldi	r31, 0x00	; 0
+ 20e:	80 81       	ld	r24, Z
+ 210:	8d 7f       	andi	r24, 0xFD	; 253
+ 212:	80 83       	st	Z, r24
+ 214:	e1 ec       	ldi	r30, 0xC1	; 193
+ 216:	f0 e0       	ldi	r31, 0x00	; 0
+ 218:	80 81       	ld	r24, Z
+ 21a:	80 68       	ori	r24, 0x80	; 128
+ 21c:	80 83       	st	Z, r24
+ 21e:	80 81       	ld	r24, Z
+ 220:	88 61       	ori	r24, 0x18	; 24
+ 222:	80 83       	st	Z, r24
+ 224:	e2 ec       	ldi	r30, 0xC2	; 194
+ 226:	f0 e0       	ldi	r31, 0x00	; 0
+ 228:	80 81       	ld	r24, Z
+ 22a:	86 60       	ori	r24, 0x06	; 6
+ 22c:	80 83       	st	Z, r24
+ 22e:	08 95       	ret
+
+00000230 <_USART_receive>:
+ 230:	e0 ec       	ldi	r30, 0xC0	; 192
+ 232:	f0 e0       	ldi	r31, 0x00	; 0
+ 234:	80 81       	ld	r24, Z
+ 236:	85 ff       	sbrs	r24, 5
+ 238:	fd cf       	rjmp	.-6      	; 0x234 <_USART_receive+0x4>
+ 23a:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+ 23e:	08 95       	ret
+
+00000240 <_USART_send>:
+ 240:	e0 ec       	ldi	r30, 0xC0	; 192
+ 242:	f0 e0       	ldi	r31, 0x00	; 0
+ 244:	90 81       	ld	r25, Z
+ 246:	95 ff       	sbrs	r25, 5
+ 248:	fd cf       	rjmp	.-6      	; 0x244 <_USART_send+0x4>
+ 24a:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+ 24e:	08 95       	ret
+
+00000250 <__vector_18>:
+ 250:	1f 92       	push	r1
+ 252:	0f 92       	push	r0
+ 254:	0f b6       	in	r0, 0x3f	; 63
+ 256:	0f 92       	push	r0
+ 258:	11 24       	eor	r1, r1
+ 25a:	2f 93       	push	r18
+ 25c:	3f 93       	push	r19
+ 25e:	4f 93       	push	r20
+ 260:	5f 93       	push	r21
+ 262:	6f 93       	push	r22
+ 264:	7f 93       	push	r23
+ 266:	8f 93       	push	r24
+ 268:	9f 93       	push	r25
+ 26a:	af 93       	push	r26
+ 26c:	bf 93       	push	r27
+ 26e:	ef 93       	push	r30
+ 270:	ff 93       	push	r31
+ 272:	80 91 d4 01 	lds	r24, 0x01D4	; 0x8001d4 <buffer+0xcc>
+ 276:	87 39       	cpi	r24, 0x97	; 151
+ 278:	20 f0       	brcs	.+8      	; 0x282 <__vector_18+0x32>
+ 27a:	83 e1       	ldi	r24, 0x13	; 19
+ 27c:	e1 df       	rcall	.-62     	; 0x240 <_USART_send>
+ 27e:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <FLOW_STATUS>
+ 282:	d6 df       	rcall	.-84     	; 0x230 <_USART_receive>
+ 284:	5e df       	rcall	.-324    	; 0x142 <BufferIn>
+ 286:	ff 91       	pop	r31
+ 288:	ef 91       	pop	r30
+ 28a:	bf 91       	pop	r27
+ 28c:	af 91       	pop	r26
+ 28e:	9f 91       	pop	r25
+ 290:	8f 91       	pop	r24
+ 292:	7f 91       	pop	r23
+ 294:	6f 91       	pop	r22
+ 296:	5f 91       	pop	r21
+ 298:	4f 91       	pop	r20
+ 29a:	3f 91       	pop	r19
+ 29c:	2f 91       	pop	r18
+ 29e:	0f 90       	pop	r0
+ 2a0:	0f be       	out	0x3f, r0	; 63
+ 2a2:	0f 90       	pop	r0
+ 2a4:	1f 90       	pop	r1
+ 2a6:	18 95       	reti
+
+000002a8 <USART_putByte>:
+ 2a8:	cf 93       	push	r28
+ 2aa:	c8 2f       	mov	r28, r24
+ 2ac:	8d 7f       	andi	r24, 0xFD	; 253
+ 2ae:	81 31       	cpi	r24, 0x11	; 17
+ 2b0:	11 f0       	breq	.+4      	; 0x2b6 <USART_putByte+0xe>
+ 2b2:	cf 30       	cpi	r28, 0x0F	; 15
+ 2b4:	31 f4       	brne	.+12     	; 0x2c2 <USART_putByte+0x1a>
+ 2b6:	8f e0       	ldi	r24, 0x0F	; 15
+ 2b8:	c3 df       	rcall	.-122    	; 0x240 <_USART_send>
+ 2ba:	8c 2f       	mov	r24, r28
+ 2bc:	80 95       	com	r24
+ 2be:	c0 df       	rcall	.-128    	; 0x240 <_USART_send>
+ 2c0:	02 c0       	rjmp	.+4      	; 0x2c6 <USART_putByte+0x1e>
+ 2c2:	8c 2f       	mov	r24, r28
+ 2c4:	bd df       	rcall	.-134    	; 0x240 <_USART_send>
+ 2c6:	cf 91       	pop	r28
+ 2c8:	08 95       	ret
+
+000002ca <_readDataByte>:
+}
+
+unsigned char _readDataByte()
+{
+	unsigned char data = 0;
+	data |= (PIND & PortD_Mask);
+ 2ca:	29 b1       	in	r18, 0x09	; 9
+	data |= (PINB & PortB_Mask);
+ 2cc:	93 b1       	in	r25, 0x03	; 3
+	return data;
+ 2ce:	20 7c       	andi	r18, 0xC0	; 192
+ 2d0:	89 2f       	mov	r24, r25
+ 2d2:	8f 73       	andi	r24, 0x3F	; 63
+}
+ 2d4:	82 2b       	or	r24, r18
+ 2d6:	08 95       	ret
+
+000002d8 <_setInputMode>:
+
+void _setInputMode()
+{
+	//set DDRD to input mode for pin 6 & 7
+	DDRD &= ~(D6 | D7);
+ 2d8:	8a b1       	in	r24, 0x0a	; 10
+ 2da:	8f 73       	andi	r24, 0x3F	; 63
+ 2dc:	8a b9       	out	0x0a, r24	; 10
+	//set DDRB to input for pin 8 to 13
+	DDRB &= ~(D0| D1 | D2 | D3 | D4 | D5);
+ 2de:	84 b1       	in	r24, 0x04	; 4
+ 2e0:	80 7c       	andi	r24, 0xC0	; 192
+ 2e2:	84 b9       	out	0x04, r24	; 4
+
+	IO_Mode = 0;
+ 2e4:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <IO_Mode>
+ 2e8:	08 95       	ret
+
+000002ea <setupEEPROM>:
+char IO_Mode = 0;
+
+void setupEEPROM()
+{
+	//set pin for read mode
+	_setInputMode();
+ 2ea:	f6 df       	rcall	.-20     	; 0x2d8 <_setInputMode>
+	
+	//set we direction reg
+	DDRD |= WE;
+ 2ec:	52 9a       	sbi	0x0a, 2	; 10
+	//set we high
+	writeEnable_HIGH();
+ 2ee:	5a 9a       	sbi	0x0b, 2	; 11
+ 2f0:	08 95       	ret
+
+000002f2 <readEEPROM>:
+	//write data byte
+	_writeDataByte(*start);
+}
+
+void readEEPROM(unsigned short startAddress, unsigned short endAddress)
+{
+ 2f2:	ef 92       	push	r14
+ 2f4:	ff 92       	push	r15
+ 2f6:	0f 93       	push	r16
+ 2f8:	1f 93       	push	r17
+ 2fa:	cf 93       	push	r28
+ 2fc:	df 93       	push	r29
+ 2fe:	e8 2e       	mov	r14, r24
+ 300:	f9 2e       	mov	r15, r25
+ 302:	8b 01       	movw	r16, r22
+	//check for correct pin mode
+	if (IO_Mode)
+ 304:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <IO_Mode>
+ 308:	81 11       	cpse	r24, r1
+	{
+		_setInputMode();
+ 30a:	e6 df       	rcall	.-52     	; 0x2d8 <_setInputMode>
+	}
+	
+	for (register int i = startAddress; i < endAddress; i++)
+ 30c:	ce 2d       	mov	r28, r14
+ 30e:	df 2d       	mov	r29, r15
+ 310:	c0 17       	cp	r28, r16
+ 312:	d1 07       	cpc	r29, r17
+ 314:	78 f4       	brcc	.+30     	; 0x334 <readEEPROM+0x42>
+	{
+		//shift address high and low byte
+		shiftOutShort(i & ~(1 << 15));
+ 316:	ce 01       	movw	r24, r28
+ 318:	9f 77       	andi	r25, 0x7F	; 127
+		//read byte and send via serial
+		USART_putByte(_readDataByte());
+ 31a:	f4 de       	rcall	.-536    	; 0x104 <shiftOutShort>
+ 31c:	d6 df       	rcall	.-84     	; 0x2ca <_readDataByte>
+ 31e:	c4 df       	rcall	.-120    	; 0x2a8 <USART_putByte>
+ 320:	8f e8       	ldi	r24, 0x8F	; 143
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 322:	91 e0       	ldi	r25, 0x01	; 1
+ 324:	01 97       	sbiw	r24, 0x01	; 1
+ 326:	f1 f7       	brne	.-4      	; 0x324 <readEEPROM+0x32>
+ 328:	00 c0       	rjmp	.+0      	; 0x32a <readEEPROM+0x38>
+ 32a:	00 00       	nop
+ 32c:	21 96       	adiw	r28, 0x01	; 1
+	if (IO_Mode)
+	{
+		_setInputMode();
+	}
+	
+	for (register int i = startAddress; i < endAddress; i++)
+ 32e:	c0 17       	cp	r28, r16
+ 330:	d1 07       	cpc	r29, r17
+ 332:	88 f3       	brcs	.-30     	; 0x316 <readEEPROM+0x24>
+ 334:	df 91       	pop	r29
+		//read byte and send via serial
+		USART_putByte(_readDataByte());
+		
+		_delay_ms(0.1);
+	}
+}
+ 336:	cf 91       	pop	r28
+ 338:	1f 91       	pop	r17
+ 33a:	0f 91       	pop	r16
+ 33c:	ff 90       	pop	r15
+ 33e:	ef 90       	pop	r14
+ 340:	08 95       	ret
+
+00000342 <_writeDataByte>:
+ 342:	cf 93       	push	r28
+
+void _writeDataByte(unsigned char data)
+{
+ 344:	df 93       	push	r29
+ 346:	c8 2f       	mov	r28, r24
+	//set portD
+	PORTD &= ~PortD_Mask;
+ 348:	8b b1       	in	r24, 0x0b	; 11
+ 34a:	8f 73       	andi	r24, 0x3F	; 63
+ 34c:	8b b9       	out	0x0b, r24	; 11
+	PORTD |= (data & PortD_Mask);
+ 34e:	8b b1       	in	r24, 0x0b	; 11
+ 350:	9c 2f       	mov	r25, r28
+ 352:	90 7c       	andi	r25, 0xC0	; 192
+ 354:	89 2b       	or	r24, r25
+ 356:	8b b9       	out	0x0b, r24	; 11
+	//
+	////set portB
+	PORTB &= ~PortB_Mask;
+ 358:	85 b1       	in	r24, 0x05	; 5
+ 35a:	80 7c       	andi	r24, 0xC0	; 192
+ 35c:	85 b9       	out	0x05, r24	; 5
+	PORTB |= (data & PortB_Mask);
+ 35e:	85 b1       	in	r24, 0x05	; 5
+ 360:	9c 2f       	mov	r25, r28
+ 362:	9f 73       	andi	r25, 0x3F	; 63
+ 364:	89 2b       	or	r24, r25
+ 366:	85 b9       	out	0x05, r24	; 5
+	
+	
+	//latch add --> falling edge
+	writeEnable_LOW();
+ 368:	5a 98       	cbi	0x0b, 2	; 11
+ 36a:	87 e4       	ldi	r24, 0x47	; 71
+ 36c:	93 e0       	ldi	r25, 0x03	; 3
+ 36e:	01 97       	sbiw	r24, 0x01	; 1
+ 370:	f1 f7       	brne	.-4      	; 0x36e <_writeDataByte+0x2c>
+ 372:	00 c0       	rjmp	.+0      	; 0x374 <_writeDataByte+0x32>
+ 374:	00 00       	nop
+	_delay_ms(0.21);
+	//latch data --> rising edge
+	writeEnable_HIGH();
+ 376:	5a 9a       	sbi	0x0b, 2	; 11
+ 378:	8f e3       	ldi	r24, 0x3F	; 63
+ 37a:	9c e9       	ldi	r25, 0x9C	; 156
+ 37c:	01 97       	sbiw	r24, 0x01	; 1
+ 37e:	f1 f7       	brne	.-4      	; 0x37c <_writeDataByte+0x3a>
+ 380:	00 c0       	rjmp	.+0      	; 0x382 <_writeDataByte+0x40>
+ 382:	00 00       	nop
+	
+	//sleep for write to end
+	_delay_ms(10);
+	_setInputMode();
+ 384:	a9 df       	rcall	.-174    	; 0x2d8 <_setInputMode>
+	while (_readDataByte() == ~data)
+ 386:	d0 e0       	ldi	r29, 0x00	; 0
+ 388:	c0 95       	com	r28
+ 38a:	d0 95       	com	r29
+ 38c:	02 c0       	rjmp	.+4      	; 0x392 <_writeDataByte+0x50>
+	{
+		USART_putByte(0xFF);
+ 38e:	8f ef       	ldi	r24, 0xFF	; 255
+	writeEnable_HIGH();
+	
+	//sleep for write to end
+	_delay_ms(10);
+	_setInputMode();
+	while (_readDataByte() == ~data)
+ 390:	8b df       	rcall	.-234    	; 0x2a8 <USART_putByte>
+ 392:	9b df       	rcall	.-202    	; 0x2ca <_readDataByte>
+ 394:	90 e0       	ldi	r25, 0x00	; 0
+ 396:	8c 17       	cp	r24, r28
+ 398:	9d 07       	cpc	r25, r29
+ 39a:	c9 f3       	breq	.-14     	; 0x38e <_writeDataByte+0x4c>
+	{
+		USART_putByte(0xFF);
+	} 
+}
+ 39c:	df 91       	pop	r29
+ 39e:	cf 91       	pop	r28
+ 3a0:	08 95       	ret
+
+000003a2 <_setOutputMode>:
+	IO_Mode = 0;
+}
+
+void _setOutputMode()
+{
+	DDRD |= D6 | D7;
+ 3a2:	8a b1       	in	r24, 0x0a	; 10
+ 3a4:	80 6c       	ori	r24, 0xC0	; 192
+ 3a6:	8a b9       	out	0x0a, r24	; 10
+	DDRB |= D0 | D1 | D2 | D3 | D4 | D5;
+ 3a8:	84 b1       	in	r24, 0x04	; 4
+ 3aa:	8f 63       	ori	r24, 0x3F	; 63
+ 3ac:	84 b9       	out	0x04, r24	; 4
+	
+	IO_Mode = 1;
+ 3ae:	81 e0       	ldi	r24, 0x01	; 1
+ 3b0:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <IO_Mode>
+ 3b4:	08 95       	ret
+
+000003b6 <writeEEPROM>:
+	writeEnable_HIGH();
+	
+}
+
+void writeEEPROM(unsigned char *start)
+{
+ 3b6:	cf 93       	push	r28
+ 3b8:	df 93       	push	r29
+ 3ba:	ec 01       	movw	r28, r24
+	//check for correct pin mode
+	if (!IO_Mode)
+ 3bc:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <IO_Mode>
+ 3c0:	81 11       	cpse	r24, r1
+ 3c2:	01 c0       	rjmp	.+2      	; 0x3c6 <writeEEPROM+0x10>
+	{
+		_setOutputMode();
+ 3c4:	ee df       	rcall	.-36     	; 0x3a2 <_setOutputMode>
+	//shift address
+	register unsigned char add_H = *start;
+	start++;
+	register unsigned char add_L = *start;
+	start++;
+	shiftOutShort((add_H << 8) | (unsigned short)(add_L) | 1 << 15);
+ 3c6:	28 81       	ld	r18, Y
+ 3c8:	89 81       	ldd	r24, Y+1	; 0x01
+ 3ca:	90 e0       	ldi	r25, 0x00	; 0
+ 3cc:	90 68       	ori	r25, 0x80	; 128
+ 3ce:	92 2b       	or	r25, r18
+ 3d0:	99 de       	rcall	.-718    	; 0x104 <shiftOutShort>
+	
+	//write data byte
+	_writeDataByte(*start);
+ 3d2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3d4:	b6 df       	rcall	.-148    	; 0x342 <_writeDataByte>
+ 3d6:	df 91       	pop	r29
+}
+ 3d8:	cf 91       	pop	r28
+ 3da:	08 95       	ret
+
+000003dc <setupTimer>:
+ 3dc:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+void setupTimer(void);
+
+void setupTimer()
+{
+	TCCR1A = 0x00;
+	TCCR1B = (1<<CS10) | (1<<CS12);;  // Timer mode with 1024 prescaler
+ 3e0:	85 e0       	ldi	r24, 0x05	; 5
+ 3e2:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+	TCNT1 = top; //set top value
+ 3e6:	85 e4       	ldi	r24, 0x45	; 69
+ 3e8:	9d e0       	ldi	r25, 0x0D	; 13
+ 3ea:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__DATA_REGION_ORIGIN__+0x25>
+ 3ee:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__DATA_REGION_ORIGIN__+0x24>
+	TIMSK1 = (1 << TOIE1);
+ 3f2:	81 e0       	ldi	r24, 0x01	; 1
+ 3f4:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__DATA_REGION_ORIGIN__+0xf>
+ 3f8:	08 95       	ret
+
+000003fa <__vector_13>:
+	}
+}
+
+//timer 1 ISR
+ISR(TIMER1_OVF_vect)
+{
+ 3fa:	1f 92       	push	r1
+ 3fc:	0f 92       	push	r0
+ 3fe:	0f b6       	in	r0, 0x3f	; 63
+ 400:	0f 92       	push	r0
+ 402:	11 24       	eor	r1, r1
+	
+}
+ 404:	0f 90       	pop	r0
+ 406:	0f be       	out	0x3f, r0	; 63
+ 408:	0f 90       	pop	r0
+ 40a:	1f 90       	pop	r1
+ 40c:	18 95       	reti
+
+0000040e <EvalCommand>:
+
+
+//evaluate command buffer for instructions
+void EvalCommand()
+{
+	if (command[0] == writeByte)
+ 40e:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <command>
+ 412:	81 30       	cpi	r24, 0x01	; 1
+ 414:	29 f4       	brne	.+10     	; 0x420 <EvalCommand+0x12>
+	{
+		//write mode confirmed - route write further data to eeprom
+		writeMode = 1;
+ 416:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <writeMode>
+		USART_putByte(startByte);
+ 41a:	85 e5       	ldi	r24, 0x55	; 85
+ 41c:	45 cf       	rjmp	.-374    	; 0x2a8 <USART_putByte>
+ 41e:	08 95       	ret
+	}
+	else if (command[0] == readByte)
+ 420:	82 30       	cpi	r24, 0x02	; 2
+ 422:	99 f4       	brne	.+38     	; 0x44a <EvalCommand+0x3c>
+	{
+		// read mode confirmed - save start address
+		readMode = 1;
+ 424:	81 e0       	ldi	r24, 0x01	; 1
+ 426:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <__data_end>
+		startAddress |= (unsigned short)command[1] << 8;
+		startAddress |= (unsigned short)command[2];
+ 42a:	e5 e0       	ldi	r30, 0x05	; 5
+ 42c:	f1 e0       	ldi	r31, 0x01	; 1
+ 42e:	22 81       	ldd	r18, Z+2	; 0x02
+ 430:	80 91 d5 01 	lds	r24, 0x01D5	; 0x8001d5 <startAddress>
+ 434:	90 91 d6 01 	lds	r25, 0x01D6	; 0x8001d6 <startAddress+0x1>
+ 438:	82 2b       	or	r24, r18
+ 43a:	21 81       	ldd	r18, Z+1	; 0x01
+ 43c:	92 2b       	or	r25, r18
+ 43e:	90 93 d6 01 	sts	0x01D6, r25	; 0x8001d6 <startAddress+0x1>
+ 442:	80 93 d5 01 	sts	0x01D5, r24	; 0x8001d5 <startAddress>
+
+		//confirm read mode
+		USART_putByte(startByte);
+ 446:	85 e5       	ldi	r24, 0x55	; 85
+ 448:	2f cf       	rjmp	.-418    	; 0x2a8 <USART_putByte>
+ 44a:	08 95       	ret
+
+0000044c <main>:
+void EvalCommand(void);
+
+int main(void)
+{
+	//startup code - setup pin modes etc
+	setupShiftIO();
+ 44c:	69 de       	rcall	.-814    	; 0x120 <setupShiftIO>
+	setupSerial();
+ 44e:	d8 de       	rcall	.-592    	; 0x200 <setupSerial>
+	setupEEPROM();
+ 450:	4c df       	rcall	.-360    	; 0x2ea <setupEEPROM>
+	setupTimer();
+ 452:	c4 df       	rcall	.-120    	; 0x3dc <setupTimer>
+	setupFIFO();
+ 454:	69 de       	rcall	.-814    	; 0x128 <setupFIFO>
+ 456:	78 94       	sei
+	
+	//enable interrupts
+	sei();
+ 458:	85 e5       	ldi	r24, 0x55	; 85
+	
+	//indicate successful startup, ready for data
+	USART_putByte(startByte);
+ 45a:	26 df       	rcall	.-436    	; 0x2a8 <USART_putByte>
+ 45c:	c4 ed       	ldi	r28, 0xD4	; 212
+ 45e:	d1 e0       	ldi	r29, 0x01	; 1
+	
+	//loop and wait for serial interrupt
+	while (1)
+	{
+		//only run if buffer contains valid frames
+		if (buffer.counter < 3)
+ 460:	11 e0       	ldi	r17, 0x01	; 1
+ 462:	88 81       	ld	r24, Y
+				
+				//read eeprom between addresses
+				readEEPROM(startAddress, endAddress);
+				
+				//reset state - confirm op done with start code
+				idleMode = 1;
+ 464:	83 30       	cpi	r24, 0x03	; 3
+	
+	//loop and wait for serial interrupt
+	while (1)
+	{
+		//only run if buffer contains valid frames
+		if (buffer.counter < 3)
+ 466:	e8 f3       	brcs	.-6      	; 0x462 <main+0x16>
+ 468:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <FLOW_STATUS>
+		{
+			continue;
+		}
+		
+		if (!FLOW_STATUS && buffer.counter < BUFFER_THREASHOLD_LOWER)
+ 46c:	91 11       	cpse	r25, r1
+ 46e:	06 c0       	rjmp	.+12     	; 0x47c <main+0x30>
+ 470:	84 31       	cpi	r24, 0x14	; 20
+ 472:	20 f4       	brcc	.+8      	; 0x47c <main+0x30>
+ 474:	10 93 01 01 	sts	0x0101, r17	; 0x800101 <FLOW_STATUS>
+		{
+			FLOW_STATUS = 1;
+			_USART_send(XON);
+ 478:	81 e1       	ldi	r24, 0x11	; 17
+ 47a:	e2 de       	rcall	.-572    	; 0x240 <_USART_send>
+		}
+		
+		//disable interrupts -> atomic reading from fifo
+		cli();
+ 47c:	f8 94       	cli
+		//read 3 bytes
+		BufferOut(command);
+ 47e:	85 e0       	ldi	r24, 0x05	; 5
+ 480:	91 e0       	ldi	r25, 0x01	; 1
+ 482:	93 de       	rcall	.-730    	; 0x1aa <BufferOut>
+		BufferOut(command+1);
+ 484:	86 e0       	ldi	r24, 0x06	; 6
+ 486:	91 e0       	ldi	r25, 0x01	; 1
+ 488:	90 de       	rcall	.-736    	; 0x1aa <BufferOut>
+ 48a:	87 e0       	ldi	r24, 0x07	; 7
+		BufferOut(command+2);
+ 48c:	91 e0       	ldi	r25, 0x01	; 1
+ 48e:	8d de       	rcall	.-742    	; 0x1aa <BufferOut>
+ 490:	78 94       	sei
+ 492:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__data_start>
+		//re-enable interrupts
+		sei();
+		
+		if (idleMode && command[0] == startByte)
+ 496:	88 23       	and	r24, r24
+ 498:	41 f0       	breq	.+16     	; 0x4aa <main+0x5e>
+ 49a:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <command>
+ 49e:	85 35       	cpi	r24, 0x55	; 85
+ 4a0:	01 f7       	brne	.-64     	; 0x462 <main+0x16>
+ 4a2:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__data_start>
+		{
+			idleMode = 0;
+ 4a6:	00 df       	rcall	.-512    	; 0x2a8 <USART_putByte>
+			USART_putByte(startByte);
+ 4a8:	dc cf       	rjmp	.-72     	; 0x462 <main+0x16>
+ 4aa:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <writeMode>
+		}
+		
+		else if (!idleMode)
+		{
+			//if read or write mode --> direct action
+			if (writeMode)
+ 4ae:	88 23       	and	r24, r24
+ 4b0:	79 f0       	breq	.+30     	; 0x4d0 <main+0x84>
+ 4b2:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <command>
+			{
+				if (command[0] == 0xFF)
+ 4b6:	8f 3f       	cpi	r24, 0xFF	; 255
+ 4b8:	39 f4       	brne	.+14     	; 0x4c8 <main+0x7c>
+				{
+					//0xFF as address highbyte -> invalid read address
+					//process finished - send to sleep mode
+					idleMode = 1;
+ 4ba:	10 93 00 01 	sts	0x0100, r17	; 0x800100 <__data_start>
+					writeMode = 0;
+ 4be:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <writeMode>
+					USART_putByte(startByte);
+ 4c2:	85 e5       	ldi	r24, 0x55	; 85
+ 4c4:	f1 de       	rcall	.-542    	; 0x2a8 <USART_putByte>
+ 4c6:	cd cf       	rjmp	.-102    	; 0x462 <main+0x16>
+ 4c8:	85 e0       	ldi	r24, 0x05	; 5
+				}
+				else
+				{
+					//in write mode --> write data to eeprom
+					writeEEPROM(command);
+ 4ca:	91 e0       	ldi	r25, 0x01	; 1
+ 4cc:	74 df       	rcall	.-280    	; 0x3b6 <writeEEPROM>
+ 4ce:	c9 cf       	rjmp	.-110    	; 0x462 <main+0x16>
+ 4d0:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
+				}
+			}
+			else if (readMode)
+ 4d4:	88 23       	and	r24, r24
+ 4d6:	a1 f0       	breq	.+40     	; 0x500 <main+0xb4>
+ 4d8:	e5 e0       	ldi	r30, 0x05	; 5
+			{
+				//get end address from two bytes
+				unsigned short endAddress = 0;
+				endAddress |= (unsigned short)command[1] << 8;
+ 4da:	f1 e0       	ldi	r31, 0x01	; 1
+ 4dc:	61 81       	ldd	r22, Z+1	; 0x01
+				endAddress |= (unsigned short)command[2];
+				
+				//read eeprom between addresses
+				readEEPROM(startAddress, endAddress);
+ 4de:	70 e0       	ldi	r23, 0x00	; 0
+ 4e0:	76 2f       	mov	r23, r22
+ 4e2:	66 27       	eor	r22, r22
+ 4e4:	82 81       	ldd	r24, Z+2	; 0x02
+ 4e6:	68 2b       	or	r22, r24
+ 4e8:	80 91 d5 01 	lds	r24, 0x01D5	; 0x8001d5 <startAddress>
+ 4ec:	90 91 d6 01 	lds	r25, 0x01D6	; 0x8001d6 <startAddress+0x1>
+ 4f0:	00 df       	rcall	.-512    	; 0x2f2 <readEEPROM>
+				
+				//reset state - confirm op done with start code
+				idleMode = 1;
+ 4f2:	10 93 00 01 	sts	0x0100, r17	; 0x800100 <__data_start>
+				readMode = 0;
+ 4f6:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <__data_end>
+				USART_putByte(startByte);
+ 4fa:	85 e5       	ldi	r24, 0x55	; 85
+ 4fc:	d5 de       	rcall	.-598    	; 0x2a8 <USART_putByte>
+ 4fe:	b1 cf       	rjmp	.-158    	; 0x462 <main+0x16>
+ 500:	86 df       	rcall	.-244    	; 0x40e <EvalCommand>
+			}
+			else
+			{
+				//no defined state - check received data for instructions
+				EvalCommand();
+ 502:	af cf       	rjmp	.-162    	; 0x462 <main+0x16>
+
+00000504 <_exit>:
+ 504:	f8 94       	cli
+
+00000506 <__stop_program>:
+ 506:	ff cf       	rjmp	.-2      	; 0x506 <__stop_program>
