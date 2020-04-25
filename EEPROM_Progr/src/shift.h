@@ -14,10 +14,12 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+//pin definition
 #define lPin 0b00001000 //Pin D3 latch
 #define cPin 0b00010000 //Pin D4 clock
 #define dPin 0b00100000 //Pin D5 data out
 
+//pin macros
 #define Latch_HIGH() PORTD |= lPin
 #define Latch_LOW() PORTD &= ~lPin
 #define Clock_HIGH() PORTD |= cPin
@@ -31,7 +33,7 @@ enum BITORDER {MSBFIRST, LSBFIRST};
 typedef enum BITORDER bitorder;
 
 void shiftOutChar(char, char, bitorder order);
-void shiftOutShort(unsigned short);
+void shiftOutShort(uint16_t);
 void setupShiftIO(void);
 
 void shiftOutChar(char data, char autoLatch, bitorder order)
@@ -74,7 +76,7 @@ void shiftOutChar(char data, char autoLatch, bitorder order)
 	}
 }
 
-void shiftOutShort(unsigned short data)
+void shiftOutShort(uint16_t data)
 {
 	//shift out HIGHBYTE
 	shiftOutChar(data >> 8, 0, MSBFIRST);

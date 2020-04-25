@@ -15,7 +15,7 @@ src/main.d src/main.o: ../src/main.c \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../src/serialCom.h ../src/fifo.h ../src/eeprom.h ../src/timer.h
+ ../src/serialCom.h ../src/fifo.h ../src/eeprom.h
 
 h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -54,5 +54,3 @@ h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\mat
 ../src/fifo.h:
 
 ../src/eeprom.h:
-
-../src/timer.h:

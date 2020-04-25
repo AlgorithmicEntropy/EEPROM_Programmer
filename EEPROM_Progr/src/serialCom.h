@@ -3,6 +3,8 @@
  *
  * Created: 16.04.2020 17:49:04
  *  Author: Sebastian
+ *
+ *	USART serial communication protocol Implementation using receive fifo buffer
  */ 
 
 
@@ -15,20 +17,30 @@
 #include <avr/interrupt.h>
 #include "fifo.h"
 
-#define BAUD_RATE_9600_BPS  103  // 9600bps
-#define BAUD_RATE_57600_BPS 16
+#define BAUD_RATE_9600_BPS  103  // 9600bps @ 16Mhz
+#define BAUD_RATE_57600_BPS 16   //57600bps @ 16Mhz
 
-#define startByte 0x55
-#define XON 0x11
-#define XOFF 0x13
-#define ESCAPE_CHAR 0x0F //backslash
+//status bytes
+#define XON 0x11	//flow control XON
+#define XOFF 0x13	//flow control XOFF
+#define ACK 0x55	//ACK byte - confirm
+#define ERR 0x12	//ERR byte -  error
+#define ESCAPE_CHAR 0x0F //escape sequence
 
-char FLOW_STATUS = 1;
+//status macros
+#define SEND_XON() _USART_send(XON)
+#define SEND_XOFF() _USART_send(XOFF)
+#define SEND_ACK() _USART_send(ACK)
+#define SEND_ERR() _USART_send(ERR)
 
+//global vars
+uint8_t FLOW_STATUS = 1;	//flow control status indicator
+
+//function prototypes
 void setupSerial(void);
 void pauseData(void);
 void resumeData(void);
-char _USART_receive(void);
+uint8_t _USART_receive(void);
 void _USART_send(uint8_t);
 void USART_putString(uint8_t[]);
 void USART_putByte(uint8_t);
@@ -57,7 +69,7 @@ ISR(USART_RX_vect)
 	BufferIn(_USART_receive());
 }
 
-char _USART_receive()
+uint8_t _USART_receive()
 {
 	while(!(UCSR0A & (1 << 5)))		//wait for buffer to finish
 	{
@@ -80,7 +92,7 @@ void _USART_send(uint8_t data)
 void USART_putByte(uint8_t data)
 {
 	//check need to escape
-	if (data == XOFF || data == XON || data == ESCAPE_CHAR)
+	if (data == XOFF || data == XON || data == ESCAPE_CHAR || data == ACK || data == ERR)
 	{
 		_USART_send(ESCAPE_CHAR);
 		_USART_send(~data);
@@ -89,10 +101,9 @@ void USART_putByte(uint8_t data)
 	{
 		_USART_send(data);
 	}
-
 }
 
-void USART_putString(uint8_t str[])
+void USART_putString(char str[])
 {
 	int i = 0;
 	while (str[i] != 0x00)

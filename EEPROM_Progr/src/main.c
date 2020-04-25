@@ -11,20 +11,24 @@
 #include "shift.h"
 #include "serialCom.h"
 #include "eeprom.h"
-#include "timer.h"
 #include "fifo.h"
 
-#define startByte 0x55
-#define writeByte 0x01
-#define readByte 0x02
+//clock speed
+#define F_CPU 16000000UL
 
-char idleMode = 1;
-char writeMode = 0;
-char readMode = 0;
-unsigned short startAddress;
+//command code bytes
+#define enableWrite 0x01
+#define setReadStartAdd 0x02
+#define enableRead 0x04
+#define setReadEndAdd 0x6
+
+//global vars
+uint8_t writeMode = 0;
+uint16_t readStartAddress;
+uint16_t readEndAddress;
 uint8_t command[3];
 
-
+//function prototypes
 void EvalCommand(void);
 
 int main(void)
@@ -33,28 +37,28 @@ int main(void)
 	setupShiftIO();
 	setupSerial();
 	setupEEPROM();
-	setupTimer();
 	setupFIFO();
 	
 	//enable interrupts
 	sei();
 	
 	//indicate successful startup, ready for data
-	USART_putByte(startByte);
+	SEND_ACK();
 	
 	//loop and wait for serial interrupt
 	while (1)
 	{
-		//only run if buffer contains valid frames
-		if (buffer.counter < 3)
-		{
-			continue;
-		}
-		
+		//buffer getting empty --> reenable serial comm with XON
 		if (!FLOW_STATUS && buffer.counter < BUFFER_THREASHOLD_LOWER)
 		{
 			FLOW_STATUS = 1;
 			_USART_send(XON);
+		}
+				
+		//only run if buffer contains at least 3 bytes
+		if (buffer.counter < 3)
+		{
+			continue;
 		}
 		
 		//disable interrupts -> atomic reading from fifo
@@ -65,84 +69,69 @@ int main(void)
 		BufferOut(command+2);
 		//re-enable interrupts
 		sei();
-		
-		if (idleMode && command[0] == startByte)
-		{
-			idleMode = 0;
-			USART_putByte(startByte);
-		}
-		
-		else if (!idleMode)
-		{
-			//if read or write mode --> direct action
-			if (writeMode)
-			{
-				if (command[0] == 0xFF)
-				{
-					//0xFF as address highbyte -> invalid read address
-					//process finished - send to sleep mode
-					idleMode = 1;
-					writeMode = 0;
-					USART_putByte(startByte);
-				}
-				else
-				{
-					//in write mode --> write data to eeprom
-					writeEEPROM(command);
-				}
-			}
-			else if (readMode)
-			{
-				//get end address from two bytes
-				unsigned short endAddress = 0;
-				endAddress |= (unsigned short)command[1] << 8;
-				endAddress |= (unsigned short)command[2];
-				
-				//read eeprom between addresses
-				readEEPROM(startAddress, endAddress);
-				
-				//reset state - confirm op done with start code
-				idleMode = 1;
-				readMode = 0;
-				USART_putByte(startByte);
-			}
-			else
-			{
-				//no defined state - check received data for instructions
-				EvalCommand();
-			}
-		}
+		//parse 3 byte command
+		EvalCommand();
 	}
 }
-
-//timer 1 ISR
-ISR(TIMER1_OVF_vect)
-{
-	
-}
-
-
 
 //evaluate command buffer for instructions
 void EvalCommand()
 {
-	if (command[0] == writeByte)
+	if (writeMode)
 	{
-		//write mode confirmed - route write further data to eeprom
+		if (command[0] != 0xFF) //--> valid eeprom address -> max 15bit -> 0xff as address high-byte would be invalid
+		{
+			//write command data to eeprom
+			writeEEPROM(command);
+		}
+		else
+		{
+			//leave write mode
+			writeMode = 0;
+			//confirm mode switch with ACK
+			SEND_ACK();
+		}
+	}
+	
+	if (command[0] == enableWrite)
+	{
+		//switch programmer to write mode
 		writeMode = 1;
-		USART_putByte(startByte);
+		//confirm mode switch with ACK
+		SEND_ACK();
 	}
-	else if (command[0] == readByte)
+	else if (command[0] == enableRead)
 	{
-		// read mode confirmed - save start address
-		readMode = 1;
-		startAddress |= (unsigned short)command[1] << 8;
-		startAddress |= (unsigned short)command[2];
-
-		//confirm read mode
-		USART_putByte(startByte);
+		if (readStartAddress < readEndAddress)
+		{
+			readEEPROM(readStartAddress, readEndAddress);
+			//read finished - confirm with ACK
+			SEND_ACK();
+		}
+		else
+		{
+			//invalid address configuration
+			SEND_ERR();
+		}
 	}
-
+	else if (command[0] == setReadStartAdd)
+	{
+		//build 16 bit address from 2 bytes
+		readStartAddress |= (uint16_t)command[1] << 8;
+		readStartAddress |= (uint16_t)command[2];
+		SEND_ACK();
+	}
+	else if (command[0] == setReadEndAdd)
+	{
+		//build 16 bit address from 2 bytes
+		readEndAddress |= (uint16_t)command[1] << 8;
+		readEndAddress |= (uint16_t)command[2];
+		SEND_ACK();
+	}
+	else
+	{
+		SEND_ERR();
+	}
 }
 
 
