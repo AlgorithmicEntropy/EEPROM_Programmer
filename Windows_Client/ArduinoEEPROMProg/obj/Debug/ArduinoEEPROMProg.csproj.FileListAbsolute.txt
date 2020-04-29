@@ -1,0 +1,14 @@
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\bin\Debug\ArduinoEEPROMProg.exe.config
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\bin\Debug\ArduinoEEPROMProg.exe
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\bin\Debug\ArduinoEEPROMProg.pdb
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.csprojAssemblyReference.cache
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.csproj.CoreCompileInputs.cache
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.exe
+H:\Development\CSharp\MicroProcDevSuit\MicroProcSupport\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.pdb
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\bin\Debug\ArduinoEEPROMProg.exe.config
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\bin\Debug\ArduinoEEPROMProg.exe
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\bin\Debug\ArduinoEEPROMProg.pdb
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.csprojAssemblyReference.cache
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.csproj.CoreCompileInputs.cache
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.exe
+H:\Development\Arduino\SysProgProj\SysProg\Windows_Client\ArduinoEEPROMProg\obj\Debug\ArduinoEEPROMProg.pdb
