@@ -38,17 +38,15 @@ uint8_t FLOW_STATUS = 1;	//flow control status indicator
 
 //function prototypes
 void setupSerial(void);
-void pauseData(void);
-void resumeData(void);
-uint8_t _USART_receive(void);
-void _USART_send(uint8_t);
-void USART_putString(uint8_t[]);
+static uint8_t _USART_receive(void);
+static void _USART_send(uint8_t);
+void USART_putString(char *);
 void USART_putByte(uint8_t);
 
 void setupSerial()
 {
-	UBRR0H = BAUD_RATE_57600_BPS >> 8;
-	UBRR0L = BAUD_RATE_57600_BPS;
+	UBRR0H = BAUD_RATE_9600_BPS >> 8;
+	UBRR0L = BAUD_RATE_9600_BPS;
 	
 	UCSR0A &= ~(1 << U2X0);	//disable double async mode
 	UCSR0B |= (1 << RXCIE0);		//enable receiver interupts
@@ -69,7 +67,7 @@ ISR(USART_RX_vect)
 	BufferIn(_USART_receive());
 }
 
-uint8_t _USART_receive()
+static uint8_t _USART_receive()
 {
 	while(!(UCSR0A & (1 << 5)))		//wait for buffer to finish
 	{
@@ -79,7 +77,7 @@ uint8_t _USART_receive()
 	return UDR0;
 }
 
-void _USART_send(uint8_t data)
+static void _USART_send(uint8_t data)
 {
 	while(!(UCSR0A & (1 << 5)))		//wait for buffer to finish
 	{
@@ -103,13 +101,12 @@ void USART_putByte(uint8_t data)
 	}
 }
 
-void USART_putString(char str[])
+void USART_putString(char *str)
 {
-	int i = 0;
-	while (str[i] != 0x00)
+	while (*str != 0x00)
 	{
-		USART_putByte(str[i]);
-		i++;
+		USART_putByte(*str);
+		str++;
 	}
 }
 

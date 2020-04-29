@@ -16,8 +16,8 @@
 #define BUFFER_SUCCESS  1
 
 //buffer params
-#define BUFFER_SIZE 200
-#define BUFFER_THREASHOLD_UPPER 170
+#define BUFFER_SIZE 100
+#define BUFFER_THREASHOLD_UPPER 80
 #define BUFFER_THREASHOLD_LOWER 20
 
 //buffer structure def
@@ -55,7 +55,9 @@ uint8_t BufferIn(uint8_t byte)
 {
 	if ( ( buffer.write + 1 == buffer.read ) ||
 	( buffer.read == buffer.data && buffer.write + 1 == buffer.data + (BUFFER_SIZE - 1)  ) )
-	return BUFFER_FAIL;
+	{
+		return BUFFER_FAIL;
+	}
 
 	//write data byte
 	*buffer.write = byte;
@@ -91,7 +93,9 @@ uint8_t BufferOut(uint8_t *data)
 	//increment read position and wrap if end of array
 	buffer.read++;
 	if (buffer.read >= (buffer.data+(BUFFER_SIZE-1)))
+	{
 		buffer.read = buffer.data;
+	}
 		
 	//decrement fill counter
 	buffer.counter--;

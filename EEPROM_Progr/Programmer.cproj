@@ -225,9 +225,6 @@
     <Compile Include="src\shift.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\timer.h">
-      <SubType>compile</SubType>
-    </Compile>
     <None Include="src\ASF\common\services\ioport\mega\ioport.h">
       <SubType>compile</SubType>
     </None>

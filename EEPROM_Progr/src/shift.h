@@ -9,12 +9,11 @@
 #ifndef SHIFT_H_
 #define SHIFT_H_
 
-#define F_CPU 16000000UL
 
 #include <avr/io.h>
 #include <util/delay.h>
 
-//pin definition
+//pin definitions
 #define lPin 0b00001000 //Pin D3 latch
 #define cPin 0b00010000 //Pin D4 clock
 #define dPin 0b00100000 //Pin D5 data out
@@ -32,13 +31,13 @@
 enum BITORDER {MSBFIRST, LSBFIRST};
 typedef enum BITORDER bitorder;
 
-void shiftOutChar(char, char, bitorder order);
-void shiftOutShort(uint16_t);
+void shiftOutByte(uint8_t, uint8_t, bitorder);
+void shiftOutShort(uint16_t, bitorder);
 void setupShiftIO(void);
 
-void shiftOutChar(char data, char autoLatch, bitorder order)
+void shiftOutByte(uint8_t data, uint8_t autoLatch, bitorder order)
 {
-	for (char i = 0; i < 8; i++)
+	for (uint8_t i = 0; i < 8; i++)
 	{
 		if (order)
 		{
@@ -76,12 +75,12 @@ void shiftOutChar(char data, char autoLatch, bitorder order)
 	}
 }
 
-void shiftOutShort(uint16_t data)
+void shiftOutShort(uint16_t data, bitorder order)
 {
 	//shift out HIGHBYTE
-	shiftOutChar(data >> 8, 0, MSBFIRST);
+	shiftOutByte(data >> 8, 0, order);
 	//shift out LOWBYTE
-	shiftOutChar(data, 0, MSBFIRST);
+	shiftOutByte(data, 0, order);
 	//latch outputs
 	Latch_Pulse();
 }

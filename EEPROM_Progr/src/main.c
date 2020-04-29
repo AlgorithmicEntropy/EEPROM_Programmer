@@ -5,6 +5,8 @@
  * Author : Sebastian
  */ 
 
+//clock speed
+#define F_CPU 16000000UL
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -12,9 +14,6 @@
 #include "serialCom.h"
 #include "eeprom.h"
 #include "fifo.h"
-
-//clock speed
-#define F_CPU 16000000UL
 
 //command code bytes
 #define enableWrite 0x01
@@ -24,8 +23,8 @@
 
 //global vars
 uint8_t writeMode = 0;
-uint16_t readStartAddress;
-uint16_t readEndAddress;
+volatile uint16_t readStartAddress;
+volatile uint16_t readEndAddress;
 uint8_t command[3];
 
 //function prototypes
@@ -48,7 +47,7 @@ int main(void)
 	//loop and wait for serial interrupt
 	while (1)
 	{
-		//buffer getting empty --> reenable serial comm with XON
+		//flow control paused and buffer getting empty --> reenable serial comm with XON
 		if (!FLOW_STATUS && buffer.counter < BUFFER_THREASHOLD_LOWER)
 		{
 			FLOW_STATUS = 1;
@@ -82,7 +81,9 @@ void EvalCommand()
 		if (command[0] != 0xFF) //--> valid eeprom address -> max 15bit -> 0xff as address high-byte would be invalid
 		{
 			//write command data to eeprom
-			writeEEPROM(command);
+			writeBulkData(command);
+			//writeSingleByte(command);
+			//_delay_ms(8);
 		}
 		else
 		{
@@ -93,7 +94,7 @@ void EvalCommand()
 		}
 	}
 	
-	if (command[0] == enableWrite)
+	else if (command[0] == enableWrite)
 	{
 		//switch programmer to write mode
 		writeMode = 1;
@@ -117,6 +118,7 @@ void EvalCommand()
 	else if (command[0] == setReadStartAdd)
 	{
 		//build 16 bit address from 2 bytes
+		readStartAddress = 0;
 		readStartAddress |= (uint16_t)command[1] << 8;
 		readStartAddress |= (uint16_t)command[2];
 		SEND_ACK();
@@ -124,6 +126,7 @@ void EvalCommand()
 	else if (command[0] == setReadEndAdd)
 	{
 		//build 16 bit address from 2 bytes
+		readEndAddress = 0;
 		readEndAddress |= (uint16_t)command[1] << 8;
 		readEndAddress |= (uint16_t)command[2];
 		SEND_ACK();

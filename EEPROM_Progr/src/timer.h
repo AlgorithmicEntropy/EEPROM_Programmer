@@ -12,7 +12,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-#define top 3397 //0.01s at 16MHz clk //63974 = 1s
+#define top 63974 //1s at 16MHz clk
 
 void setupTimer(void);
 
