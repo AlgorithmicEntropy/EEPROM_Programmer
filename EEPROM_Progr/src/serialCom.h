@@ -34,7 +34,7 @@
 #define SEND_ERR() _USART_send(ERR)
 
 //global vars
-uint8_t FLOW_STATUS = 1;	//flow control status indicator
+bool FLOW_STATUS = true;	//flow control status indicator
 
 //function prototypes
 void setupSerial(void);
@@ -57,14 +57,13 @@ void setupSerial()
 //USART serial receive interrupt routine
 ISR(USART_RX_vect)
 {
+	BufferIn(_USART_receive());
 	//check buffer status, send stop byte if getting full
 	if (buffer.counter > BUFFER_THREASHOLD_UPPER)
 	{
 		_USART_send(XOFF);
-		FLOW_STATUS = 0;
+		FLOW_STATUS = false;
 	}
-	
-	BufferIn(_USART_receive());
 }
 
 static uint8_t _USART_receive()

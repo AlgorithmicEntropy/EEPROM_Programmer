@@ -17,8 +17,8 @@
 
 //buffer params
 #define BUFFER_SIZE 100
-#define BUFFER_THREASHOLD_UPPER 80
-#define BUFFER_THREASHOLD_LOWER 20
+#define BUFFER_THREASHOLD_UPPER 70
+#define BUFFER_THREASHOLD_LOWER 10
 
 //buffer structure def
 struct Buffer
@@ -46,16 +46,12 @@ void setupFIFO()
 }
 
 // write 1 byte into buffer
-//
-// Returns:
-//     BUFFER_FAIL       buffer full
-//     BUFFER_SUCCESS    byte written to buffer
-//
 uint8_t BufferIn(uint8_t byte)
 {
 	if ( ( buffer.write + 1 == buffer.read ) ||
 	( buffer.read == buffer.data && buffer.write + 1 == buffer.data + (BUFFER_SIZE - 1)  ) )
 	{
+		//buffer full
 		return BUFFER_FAIL;
 	}
 
@@ -75,18 +71,15 @@ uint8_t BufferIn(uint8_t byte)
 	return BUFFER_SUCCESS;
 }
 
-//
 // read single byte from buffer
-//
-// Returns:
-//     BUFFER_FAIL       buffer is empty, no byte could be read
-//     BUFFER_SUCCESS    successfully returned a byte
-//
 uint8_t BufferOut(uint8_t *data)
 {
+	//check if empty
 	if (buffer.read == buffer.write)
-	return BUFFER_FAIL;
-
+	{
+		return BUFFER_FAIL;
+	}
+	
 	//copy byte by value to detach from buffer
 	*data = *buffer.read;
 

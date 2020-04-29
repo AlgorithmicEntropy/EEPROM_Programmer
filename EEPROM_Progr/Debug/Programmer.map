@@ -37,6 +37,8 @@ Discarded input sections
  .group         0x00000000        0x8 src/main.o
  .group         0x00000000        0x8 src/main.o
  .group         0x00000000        0x8 src/main.o
+ .group         0x00000000        0x8 src/main.o
+ .group         0x00000000        0x8 src/main.o
  .text          0x00000000        0x0 src/main.o
  .data          0x00000000        0x0 src/main.o
  .bss           0x00000000        0x0 src/main.o
@@ -292,7 +294,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x5a2
+.text           0x00000000      0x576
  *(.vectors)
  .vectors       0x00000000       0x68 H:/programme/Neuer Ordner/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -382,55 +384,54 @@ END GROUP
                 0x000000a0       0x10 src/main.o
  .text._setInputMode
                 0x000000b0       0x12 src/main.o
- .text.shiftOutByte
-                0x000000c2       0x60 src/main.o
-                0x000000c2                shiftOutByte
- .text.shiftOutShort
-                0x00000122       0x22 src/main.o
-                0x00000122                shiftOutShort
  .text.setupShiftIO
-                0x00000144        0x8 src/main.o
-                0x00000144                setupShiftIO
- .text.setupFIFO
-                0x0000014c       0x1a src/main.o
-                0x0000014c                setupFIFO
- .text.BufferIn
-                0x00000166       0x68 src/main.o
-                0x00000166                BufferIn
- .text.BufferOut
-                0x000001ce       0x56 src/main.o
-                0x000001ce                BufferOut
- .text.setupSerial
-                0x00000224       0x30 src/main.o
-                0x00000224                setupSerial
- .text.__vector_18
-                0x00000254       0x64 src/main.o
-                0x00000254                __vector_18
- .text.USART_putByte
-                0x000002b8       0x28 src/main.o
-                0x000002b8                USART_putByte
- .text.setupEEPROM
-                0x000002e0        0x8 src/main.o
-                0x000002e0                setupEEPROM
+                0x000000c2        0x8 src/main.o
+                0x000000c2                setupShiftIO
+ .text.shiftOutByte
+                0x000000ca       0x60 src/main.o
+                0x000000ca                shiftOutByte
+ .text.shiftOutShort
+                0x0000012a       0x22 src/main.o
+                0x0000012a                shiftOutShort
  .text.writeSingleByte
-                0x000002e8       0x8a src/main.o
-                0x000002e8                writeSingleByte
+                0x0000014c       0x6e src/main.o
+ .text.setupFIFO
+                0x000001ba       0x1a src/main.o
+                0x000001ba                setupFIFO
+ .text.BufferIn
+                0x000001d4       0x68 src/main.o
+                0x000001d4                BufferIn
+ .text.BufferOut
+                0x0000023c       0x56 src/main.o
+                0x0000023c                BufferOut
+ .text.setupSerial
+                0x00000292       0x30 src/main.o
+                0x00000292                setupSerial
+ .text.__vector_18
+                0x000002c2       0x64 src/main.o
+                0x000002c2                __vector_18
+ .text.USART_putByte
+                0x00000326       0x28 src/main.o
+                0x00000326                USART_putByte
+ .text.setupEEPROM
+                0x0000034e        0x8 src/main.o
+                0x0000034e                setupEEPROM
  .text.writeBulkData
-                0x00000372       0x7e src/main.o
-                0x00000372                writeBulkData
+                0x00000356       0x6e src/main.o
+                0x00000356                writeBulkData
  .text.readEEPROM
-                0x000003f0       0x76 src/main.o
-                0x000003f0                readEEPROM
+                0x000003c4       0x76 src/main.o
+                0x000003c4                readEEPROM
  .text.EvalCommand
-                0x00000466       0xee src/main.o
-                0x00000466                EvalCommand
- .text.main     0x00000554       0x4a src/main.o
-                0x00000554                main
-                0x0000059e                . = ALIGN (0x2)
+                0x0000043a       0xee src/main.o
+                0x0000043a                EvalCommand
+ .text.main     0x00000528       0x4a src/main.o
+                0x00000528                main
+                0x00000572                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000059e        0x0 h:/programme/neuer ordner/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000059e                _exit
-                0x0000059e                exit
+ .fini9         0x00000572        0x0 h:/programme/neuer ordner/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000572                _exit
+                0x00000572                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -449,11 +450,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000059e        0x4 h:/programme/neuer ordner/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000572        0x4 h:/programme/neuer ordner/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000005a2                _etext = .
+                0x00000576                _etext = .
 
-.data           0x00800100        0x2 load address 0x000005a2
+.data           0x00800100        0x2 load address 0x00000576
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -488,8 +489,8 @@ END GROUP
                 0x0080010b                buffer
                 0x00800174                readStartAddress
                 0x00800176                PROVIDE (__bss_end, .)
-                0x000005a2                __data_load_start = LOADADDR (.data)
-                0x000005a4                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000576                __data_load_start = LOADADDR (.data)
+                0x00000578                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800176        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -568,34 +569,34 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xef1
+.debug_info     0x00000000      0xe7a
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 H:/programme/Neuer Ordner/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_info    0x000005f4      0x8fd src/main.o
+ .debug_info    0x000005f4      0x886 src/main.o
 
-.debug_abbrev   0x00000000      0x84b
+.debug_abbrev   0x00000000      0x854
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 H:/programme/Neuer Ordner/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_abbrev  0x000005a2      0x2a9 src/main.o
+ .debug_abbrev  0x000005a2      0x2b2 src/main.o
 
-.debug_line     0x00000000      0x936
+.debug_line     0x00000000      0x908
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x133 H:/programme/Neuer Ordner/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_line    0x00000133      0x803 src/main.o
+ .debug_line    0x00000133      0x7d5 src/main.o
 
-.debug_frame    0x00000000      0x1f8
+.debug_frame    0x00000000      0x1f4
  *(.debug_frame)
- .debug_frame   0x00000000      0x1f8 src/main.o
+ .debug_frame   0x00000000      0x1f4 src/main.o
 
-.debug_str      0x00000000     0x761f
+.debug_str      0x00000000     0x7811
  *(.debug_str)
  .debug_str     0x00000000      0x208 H:/programme/Neuer Ordner/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208     0x7417 src/main.o
-                               0x74cd (size before relaxing)
+ .debug_str     0x00000208     0x7609 src/main.o
+                               0x771b (size before relaxing)
 
-.debug_loc      0x00000000      0x6f6
+.debug_loc      0x00000000      0x6a9
  *(.debug_loc)
- .debug_loc     0x00000000      0x6f6 src/main.o
+ .debug_loc     0x00000000      0x6a9 src/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -619,26 +620,28 @@ END GROUP
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x98 src/main.o
 
-.debug_macro    0x00000000     0x2a65
+.debug_macro    0x00000000     0x2acd
  *(.debug_macro)
- .debug_macro   0x00000000       0xfa src/main.o
- .debug_macro   0x000000fa      0xa4e src/main.o
- .debug_macro   0x00000b48       0x10 src/main.o
- .debug_macro   0x00000b58      0x1c9 src/main.o
- .debug_macro   0x00000d21      0x2fc src/main.o
- .debug_macro   0x0000101d       0x9e src/main.o
- .debug_macro   0x000010bb     0x1410 src/main.o
- .debug_macro   0x000024cb      0x13a src/main.o
- .debug_macro   0x00002605       0xbd src/main.o
- .debug_macro   0x000026c2       0x34 src/main.o
- .debug_macro   0x000026f6       0x18 src/main.o
- .debug_macro   0x0000270e       0x6c src/main.o
- .debug_macro   0x0000277a       0x69 src/main.o
- .debug_macro   0x000027e3       0x10 src/main.o
- .debug_macro   0x000027f3      0x166 src/main.o
- .debug_macro   0x00002959       0x40 src/main.o
- .debug_macro   0x00002999       0x28 src/main.o
- .debug_macro   0x000029c1       0x46 src/main.o
- .debug_macro   0x00002a07       0x5e src/main.o
+ .debug_macro   0x00000000      0x10c src/main.o
+ .debug_macro   0x0000010c      0xa4e src/main.o
+ .debug_macro   0x00000b5a       0x22 src/main.o
+ .debug_macro   0x00000b7c       0x10 src/main.o
+ .debug_macro   0x00000b8c      0x1c9 src/main.o
+ .debug_macro   0x00000d55      0x2fc src/main.o
+ .debug_macro   0x00001051       0x9e src/main.o
+ .debug_macro   0x000010ef     0x1410 src/main.o
+ .debug_macro   0x000024ff      0x13a src/main.o
+ .debug_macro   0x00002639       0xbd src/main.o
+ .debug_macro   0x000026f6       0x34 src/main.o
+ .debug_macro   0x0000272a       0x18 src/main.o
+ .debug_macro   0x00002742       0x6c src/main.o
+ .debug_macro   0x000027ae       0x69 src/main.o
+ .debug_macro   0x00002817       0x34 src/main.o
+ .debug_macro   0x0000284b       0x10 src/main.o
+ .debug_macro   0x0000285b      0x166 src/main.o
+ .debug_macro   0x000029c1       0x40 src/main.o
+ .debug_macro   0x00002a01       0x28 src/main.o
+ .debug_macro   0x00002a29       0x46 src/main.o
+ .debug_macro   0x00002a6f       0x5e src/main.o
 OUTPUT(Programmer.elf elf32-avr)
 LOAD linker stubs

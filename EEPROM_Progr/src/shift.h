@@ -9,7 +9,6 @@
 #ifndef SHIFT_H_
 #define SHIFT_H_
 
-
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -28,17 +27,29 @@
 
 #define Latch_Pulse() Latch_HIGH(); Latch_LOW();
 
+//bitorder enum
 enum BITORDER {MSBFIRST, LSBFIRST};
 typedef enum BITORDER bitorder;
 
+//function prototypes
 void shiftOutByte(uint8_t, uint8_t, bitorder);
 void shiftOutShort(uint16_t, bitorder);
 void setupShiftIO(void);
 
+//setup code
+void setupShiftIO()
+{
+	//set pins as output
+	DDRD |= lPin | cPin | dPin;
+}
+
+//shift out a single byte
 void shiftOutByte(uint8_t data, uint8_t autoLatch, bitorder order)
 {
+	//loop for 8 bits
 	for (uint8_t i = 0; i < 8; i++)
 	{
+		//check bitorder
 		if (order)
 		{
 			if (data & (1 << i))
@@ -52,7 +63,7 @@ void shiftOutByte(uint8_t data, uint8_t autoLatch, bitorder order)
 		}
 		else
 		{
-		//<< 7-i reverse order
+			//reverse order
 			if (data & (1 << (7-i)))
 			{
 				Data_HIGH();
@@ -84,14 +95,6 @@ void shiftOutShort(uint16_t data, bitorder order)
 	//latch outputs
 	Latch_Pulse();
 }
-
-void setupShiftIO()
-{
-	//set pins as output
-	DDRD |= lPin | cPin | dPin;
-}
-
-
 
 
 #endif /* SHIFT_H_ */

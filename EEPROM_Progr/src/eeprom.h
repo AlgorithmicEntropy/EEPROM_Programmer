@@ -37,9 +37,9 @@
 
 //function prototypes
 void setupEEPROM(void);
-void writeSingleByte(uint8_t *);
 void writeBulkData(uint8_t *);
 void readEEPROM(uint16_t startAddress, uint16_t endAddress);
+static void writeSingleByte(uint8_t, volatile uint16_t);
 static void _writeDataByte(uint8_t);
 static uint8_t _readDataByte(void);
 static void _setInputMode(void);
@@ -62,7 +62,7 @@ void setupEEPROM()
 	
 }
 
-void writeSingleByte(uint8_t *start)
+void writeSingleByte(uint8_t data, volatile uint16_t address)
 {
 	//check for correct pin mode
 	if (!IO_Mode)
@@ -70,36 +70,35 @@ void writeSingleByte(uint8_t *start)
 		_setOutputMode();
 	}
 	//create address
-	volatile uint16_t address = (*start) << 8 | start[1] | 1 << 15;
+	//volatile uint16_t address = start[0] << 8 | start[1] | 1 << 15;
 	//shift out address
 	shiftOutShort(address, MSBFIRST);
 	//_delay_ms(0.01)
 	lastAddress = address;
 	//write data byte
-	_writeDataByte(start[2]);
+	_writeDataByte(data);
 }
 
 void writeBulkData(uint8_t *start)
 {
-	volatile uint16_t address = (start[0]) << 8 | start[1];
+	//build address, set bit 15 high, used for output enable
+	volatile uint16_t address = (start[0]) << 8 | start[1] | 1 << 15;
 	//check page
 	if ((lastAddress & EEPROM_PAGE_MASK) == (address & EEPROM_PAGE_MASK))
 	{
-		writeSingleByte(start);
-		//end bulk write cycle if buffer empty
+		//write byte without delay
+		writeSingleByte(start[2], address);
+		//end bulk write cycle if buffer empty - give eeprom time to end write cycle
 		if (buffer.counter < 3)
 		{
-			_delay_ms(8);
+			_delay_ms(10);
 		}
 	}
 	else
 	{
-		while(_readDataByte() != start[2])
-		{
-			;
-		}
-		_delay_ms(100);
-		writeSingleByte(start);
+		//page validation or max bytes written -  give eeprom time to end write cycle
+		_delay_ms(10);
+		writeSingleByte(start[2], address);
 	}
 }
 
@@ -114,7 +113,7 @@ void readEEPROM(uint16_t startAddress, uint16_t endAddress)
 	//read whole eeprom
 	for (volatile uint16_t i = startAddress; i < endAddress; i++)
 	{
-		//shift address high and low byte
+		//shift address high and low byte and set bit 15 low --> output enable
 		shiftOutShort(i & ~(1 << 15), MSBFIRST);
 		//read byte and send via serial
 		USART_putByte(_readDataByte());
@@ -127,20 +126,19 @@ static void _writeDataByte(uint8_t data)
 	//set portD
 	PORTD &= ~PortD_Mask;
 	PORTD |= (data & PortD_Mask);
-	//
 	////set portB
 	PORTB &= ~PortB_Mask;
 	PORTB |= (data & PortB_Mask);
 	
 	//latch add --> falling edge
 	writeEnable_LOW();
-	_delay_ms(0.01);
 	//latch data --> rising edge
 	writeEnable_HIGH();
 }
 
 static uint8_t _readDataByte()
 {
+	//read single byte from eeprom
 	uint8_t data = 0;
 	data |= (PIND & PortD_Mask);
 	data |= (PINB & PortB_Mask);
@@ -153,15 +151,17 @@ static void _setInputMode()
 	DDRD &= ~(D6 | D7);
 	//set DDRB to input for pin 8 to 13
 	DDRB &= ~(D0| D1 | D2 | D3 | D4 | D5);
-
+	//set indicator flag
 	IO_Mode = 0;
 }
 
 static void _setOutputMode()
 {
+	//set DDRD to output mode for pin 6 & 7
 	DDRD |= D6 | D7;
+	//set DDRB to input for pin 8 to 13
 	DDRB |= D0 | D1 | D2 | D3 | D4 | D5;
-	
+	//set indicator flag
 	IO_Mode = 1;
 }
 

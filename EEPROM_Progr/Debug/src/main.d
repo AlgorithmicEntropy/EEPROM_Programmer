@@ -1,4 +1,5 @@
 src/main.d src/main.o: ../src/main.c \
+ h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -11,11 +12,14 @@ src/main.d src/main.o: ../src/main.c \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
+ h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\atomic.h \
  ../src/shift.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  ../src/serialCom.h ../src/fifo.h ../src/eeprom.h
+
+h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdbool.h:
 
 h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -40,6 +44,8 @@ h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr
 h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
 h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
+
+h:\programme\neuer\ ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\atomic.h:
 
 ../src/shift.h:
 

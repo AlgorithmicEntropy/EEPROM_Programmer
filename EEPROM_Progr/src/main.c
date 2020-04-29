@@ -8,8 +8,10 @@
 //clock speed
 #define F_CPU 16000000UL
 
+#include <stdbool.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 #include "shift.h"
 #include "serialCom.h"
 #include "eeprom.h"
@@ -22,10 +24,10 @@
 #define setReadEndAdd 0x6
 
 //global vars
-uint8_t writeMode = 0;
+uint8_t writeMode = 0; //write flag
 volatile uint16_t readStartAddress;
 volatile uint16_t readEndAddress;
-uint8_t command[3];
+uint8_t command[3]; //command buffer
 
 //function prototypes
 void EvalCommand(void);
@@ -44,7 +46,7 @@ int main(void)
 	//indicate successful startup, ready for data
 	SEND_ACK();
 	
-	//loop and wait for serial interrupt
+	//loop to process commands
 	while (1)
 	{
 		//flow control paused and buffer getting empty --> reenable serial comm with XON
@@ -82,8 +84,6 @@ void EvalCommand()
 		{
 			//write command data to eeprom
 			writeBulkData(command);
-			//writeSingleByte(command);
-			//_delay_ms(8);
 		}
 		else
 		{
@@ -133,6 +133,7 @@ void EvalCommand()
 	}
 	else
 	{
+		//unknown command
 		SEND_ERR();
 	}
 }
