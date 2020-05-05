@@ -210,19 +210,22 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="src\eeprom.h">
+    <Compile Include="src\lib\eeprom.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\fifo.h">
+    <Compile Include="src\lib\fifo.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\lib\serialCom.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\lib\shift.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\lib\shift.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\serialCom.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\shift.h">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\ASF\common\services\ioport\mega\ioport.h">
@@ -315,6 +318,7 @@
     <Folder Include="src\ASF\mega\utils\assembler\" />
     <Folder Include="src\ASF\mega\utils\preprocessor\" />
     <Folder Include="src\config\" />
+    <Folder Include="src\lib" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

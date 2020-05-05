@@ -51,11 +51,13 @@ SUBDIRS :=  \
 ../src/ASF/mega/utils/ \
 ../src/ASF/mega/utils/assembler/ \
 ../src/ASF/mega/utils/preprocessor/ \
-../src/config/
+../src/config/ \
+../src/lib
 
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../src/lib/shift.c \
 ../src/main.c \
 ../src/ASF/mega/boards/atmega328p_xplained_mini/init.c
 
@@ -67,18 +69,22 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+src/lib/shift.o \
 src/main.o \
 src/ASF/mega/boards/atmega328p_xplained_mini/init.o
 
 OBJS_AS_ARGS +=  \
+src/lib/shift.o \
 src/main.o \
 src/ASF/mega/boards/atmega328p_xplained_mini/init.o
 
 C_DEPS +=  \
+src/lib/shift.d \
 src/main.d \
 src/ASF/mega/boards/atmega328p_xplained_mini/init.d
 
 C_DEPS_AS_ARGS +=  \
+src/lib/shift.d \
 src/main.d \
 src/ASF/mega/boards/atmega328p_xplained_mini/init.d
 
@@ -96,6 +102,13 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+src/lib/shift.o: ../src/lib/shift.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)H:\programme\Neuer Ordner\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -DDEBUG -DBOARD=ATMEGA328P_XPLAINED_MINI  -I"H:\programme\Neuer Ordner\7.0\Packs\atmel\ATmega_DFP\1.2.209\include" -I"../src/ASF/common/boards" -I"../src/ASF/mega/utils/preprocessor" -I"../src/ASF/mega/utils" -I"../src/ASF/common/utils" -I"../src/ASF/mega/boards" -I"../src/ASF/mega/boards/atmega328p_xplained_mini" -I"../src/ASF/common/services/gpio" -I"../src/ASF/common/services/ioport" -I"../src" -I"../src/config"  -O1 -fdata-sections -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=atmega328p -B "H:\programme\Neuer Ordner\7.0\Packs\atmel\ATmega_DFP\1.2.209\gcc\dev\atmega328p" -c -std=gnu99 -fno-strict-aliasing -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -mrelax -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 src/main.o: ../src/main.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0

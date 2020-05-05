@@ -59,7 +59,7 @@ namespace ArduinoEEPROMProg
                     Console.WriteLine("Please enter end address");
                     uint endAddress = Convert.ToByte(Console.ReadLine(), 16);
 
-                    byte[] code = new byte[] { 0x02, (byte)(startAddress >> 8), (byte)startAddress, 0x06, (byte)(startAddress >> 8), (byte)endAddress, 0x04, 0x00, 0x00 };
+                    byte[] code = new byte[] { 0x02, (byte)(startAddress >> 8), (byte)startAddress, 0x06, (byte)(endAddress >> 8), (byte)endAddress, 0x04, 0x00, 0x00 };
                     con.Write(code);
                     continue;
                 }

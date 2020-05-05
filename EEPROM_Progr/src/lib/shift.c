@@ -1,40 +1,16 @@
 /*
- * Shift.h
+ * shift.c
  *
- * Created: 16.04.2020 14:49:26
+ * Created: 05.05.2020 18:51:43
  *  Author: Sebastian
  */ 
 
 
-#ifndef SHIFT_H_
-#define SHIFT_H_
-
 #include <avr/io.h>
+#include "shift.h"
+#define F_CPU 16000000UL
 #include <util/delay.h>
 
-//pin definitions
-#define lPin 0b00001000 //Pin D3 latch
-#define cPin 0b00010000 //Pin D4 clock
-#define dPin 0b00100000 //Pin D5 data out
-
-//pin macros
-#define Latch_HIGH() PORTD |= lPin
-#define Latch_LOW() PORTD &= ~lPin
-#define Clock_HIGH() PORTD |= cPin
-#define Clock_LOW() PORTD &= ~cPin
-#define Data_HIGH() PORTD |= dPin
-#define Data_LOW() PORTD &= ~dPin
-
-#define Latch_Pulse() Latch_HIGH(); Latch_LOW();
-
-//bitorder enum
-enum BITORDER {MSBFIRST, LSBFIRST};
-typedef enum BITORDER bitorder;
-
-//function prototypes
-void shiftOutByte(uint8_t, uint8_t, bitorder);
-void shiftOutShort(uint16_t, bitorder);
-void setupShiftIO(void);
 
 //setup code
 void setupShiftIO()
@@ -71,7 +47,7 @@ void shiftOutByte(uint8_t data, uint8_t autoLatch, bitorder order)
 			else
 			{
 				Data_LOW();
-			}			
+			}
 		}
 		
 		//shift by pulsing clock high
@@ -95,6 +71,3 @@ void shiftOutShort(uint16_t data, bitorder order)
 	//latch outputs
 	Latch_Pulse();
 }
-
-
-#endif /* SHIFT_H_ */

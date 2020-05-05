@@ -12,10 +12,10 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/atomic.h>
-#include "shift.h"
-#include "serialCom.h"
-#include "eeprom.h"
-#include "fifo.h"
+#include "lib/shift.h"
+#include "lib/serialCom.h"
+#include "lib/eeprom.h"
+#include "lib/fifo.h"
 
 //command code bytes
 #define enableWrite 0x01
