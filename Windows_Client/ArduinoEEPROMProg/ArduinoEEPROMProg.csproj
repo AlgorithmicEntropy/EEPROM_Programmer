@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AsciiHolder.cs" />
     <Compile Include="Core\SerialConnection.cs" />
     <Compile Include="EEPROMProgramer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
